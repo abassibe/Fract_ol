@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auto_zoom.c                                        :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/28 05:21:02 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/01 06:14:43 by abassibe         ###   ########.fr       */
+/*   Created: 2017/08/01 02:36:51 by abassibe          #+#    #+#             */
+/*   Updated: 2017/08/01 04:01:59 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int		auto_zoom(t_fract *fract)
+void	get_color(t_fract *fract, int x, int y)
 {
-	if (fract->auto_zoom == 1)
-	{
-		mlx_clear_window(fract->mlx, fract->win);
-//		X -= 1;
-		mandel(fract);
-		mlx_put_image_to_window(fract->mlx, fract->win, fract->vimg, 0, 0);
-		mlx_do_sync(fract->mlx);
-	}
-	return (0);
+	int		i;
+
+	i = (x * 4) + (y * fract->sl);
+	IMG[i] = 255;
+	IMG[i + 1] = 0;
+	IMG[i + 2] = 0;
+	IMG[i + 3] = 0;
 }

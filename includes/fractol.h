@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/07/29 06:17:30 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/01 06:14:53 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define X2 fract->x2
 # define Y1 fract->y1
 # define Y2 fract->y2
+# define IMGX fract->image_x
+# define IMGY fract->image_y
+# define ZX (IMGX / (X2 - X1))
+# define ZY (IMGY / (Y2 - Y1))
 
 typedef struct		s_fract
 {
@@ -45,15 +49,29 @@ typedef struct		s_fract
 	double			x2;
 	double			y1;
 	double			y2;
+	double			image_x;
+	double			image_y;
 	int				zoom;
 	int				it_max;
 	int				c;
 	int				auto_zoom;
+	struct	s_mdb	*mdb;
 }					t_fract;
 
+typedef struct		s_mdb
+{
+	long double		cr;
+	long double		ci;
+	long double		zr;
+	long double		zi;
+	long double		tmp;
+	long			i;
+}					t_mdb;
+
 int					key_input(int keycode, t_fract *fract);
-void				render(t_fract *fract);
+void				mandel(t_fract *fract);
 int					auto_zoom(t_fract *fract);
 int					mouse_input(int button, int x, int y, t_fract *fract);
+void				get_color(t_fract *fract, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/07/29 01:46:34 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/01 03:55:08 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ NAME = fractol
 
 SRCS =	fractol.c \
 		key_input.c \
-		roger.c \
+		mandel.c \
 		auto_zoom.c \
-		mouse_input.c
+		mouse_input.c \
+		color.c
 
 OBJS = $(SRCS:.c=.o)
 

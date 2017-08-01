@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/07/29 06:10:20 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/01 06:14:18 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@ void		usage(void)
 	write (2, "- 1 for Mandelbrot\n", 19);
 	write (2, "- 2 for Julia\n", 14);
 	write (2, "- 3 pour on sait pas encore\n", 28);
+}
+
+t_mdb		*init_mdb()
+{
+	t_mdb	*new;
+
+	new = (t_mdb *)malloc(sizeof(t_mdb));
+	new->cr = 0;
+	new->ci = 0;
+	new->zr = 0;
+	new->zi = 0;
+	new->tmp = 0;
+	new->i = 0;
+	return (new);
 }
 
 t_fract		*init_struct(char c)
@@ -40,6 +54,9 @@ t_fract		*init_struct(char c)
 	new->y2 = 1.2;
 	new->zoom = 500;
 	new->it_max = 130;
+	new->image_x = 800;
+	new->image_y = 600;
+	new->mdb = init_mdb();
 	return (new);
 }
 
@@ -61,11 +78,11 @@ int			main(int ac, char **av)
 	}
 	fract = init_struct(av[1][0]);
 	fract->mlx = mlx_init();
-	fract->win = mlx_new_window(fract->mlx, 1280, 1024, fract->title);
-//	fract->vimg = mlx_new_image(fract->mlx, 1280, 1024);
-//	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
-	render(fract);
-//	mlx_put_image_to_window(fract->mlx, fract->win, fract->vimg, X, Y);
+	fract->win = mlx_new_window(fract->mlx, 800, 600, fract->title);
+	fract->vimg = mlx_new_image(fract->mlx, IMGX, IMGY);
+	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
+	mandel(fract);
+	mlx_put_image_to_window(fract->mlx, fract->win, fract->vimg, 0, 0);
 	mlx_hook(fract->win, MOTION_NOTIFY, PTR_MOTION_MASK, &mouseover, fract);
 	mlx_hook(fract->win, 2, 3, &key_input, fract);
 	mlx_mouse_hook(fract->win, &mouse_input, fract);
