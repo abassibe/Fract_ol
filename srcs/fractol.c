@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/01 06:14:18 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/02 02:52:21 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ t_fract		*init_struct(char c)
 	new->x2 = 0.6;
 	new->y1 = -1.2;
 	new->y2 = 1.2;
-	new->zoom = 500;
 	new->it_max = 130;
-	new->image_x = 800;
-	new->image_y = 600;
+	new->image_x = 600;
+	new->image_y = 400;
+	new->blue = 100;
 	new->mdb = init_mdb();
 	return (new);
 }
@@ -78,7 +78,7 @@ int			main(int ac, char **av)
 	}
 	fract = init_struct(av[1][0]);
 	fract->mlx = mlx_init();
-	fract->win = mlx_new_window(fract->mlx, 800, 600, fract->title);
+	fract->win = mlx_new_window(fract->mlx, IMGX, IMGY, fract->title);
 	fract->vimg = mlx_new_image(fract->mlx, IMGX, IMGY);
 	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
 	mandel(fract);

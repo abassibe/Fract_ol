@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/01 06:14:53 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/02 02:40:30 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ typedef struct		s_fract
 	double			y2;
 	double			image_x;
 	double			image_y;
-	int				zoom;
 	int				it_max;
 	int				c;
 	int				auto_zoom;
 	struct	s_mdb	*mdb;
+	int				blue;
 }					t_fract;
 
 typedef struct		s_mdb

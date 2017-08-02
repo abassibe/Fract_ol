@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 02:36:51 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/01 04:01:59 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/02 02:24:54 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	get_color(t_fract *fract, int x, int y)
 	int		i;
 
 	i = (x * 4) + (y * fract->sl);
-	IMG[i] = 255;
+	IMG[i] = fract->blue;
 	IMG[i + 1] = 0;
 	IMG[i + 2] = 0;
 	IMG[i + 3] = 0;
