@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/04 05:23:16 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/05 01:55:07 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static t_fract	*init_struct(char c)
 	new->it_max = 50;
 	new->image_x = 600;
 	new->image_y = 400;
+	new->zoom = 0;
 	new->blue = 255;
 	new->mouse_x = 0;
 	new->mouse_y = 0;
