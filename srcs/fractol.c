@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/04 02:11:17 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/04 04:00:52 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static t_fract	*init_struct(char c)
 	new->image_x = 600;
 	new->image_y = 400;
 	new->blue = 255;
+	new->mouse_x = 0;
+	new->mouse_y = 0;
 	new->mdb = init_mdb();
 	new->mlx = mlx_init();
 	new->vimg = mlx_new_image(new->mlx, new->image_x, new->image_y);
@@ -73,10 +75,8 @@ static t_fract	*init_struct(char c)
 
 static int		mouseover(int x, int y, t_fract *fract)
 {
-//	printf("Coordonnees : [%d, %d]\n", x, y);
-	x = 0;
-	y = 0;
-	fract->end = 0;
+	fract->mouse_x = x;
+	fract->mouse_y = y;
 	return (0);
 }
 

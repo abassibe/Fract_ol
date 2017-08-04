@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 01:46:45 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/04 02:09:55 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/04 03:57:11 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 int		mouse_input(int button, int x, int y, t_fract *fract)
 {
-/*	if (button == 1)
-		printf("Clic gauche en [%d, %d]\n", x ,y);
-	if (button == 2)
-		printf("Clic droit en [%d, %d]\n", x ,y);
+	fract->mouse_x = x;
+	fract->mouse_y = y;
 	if (button == 4)
-		printf("Molette vers avant en [%d, %d]\n", x ,y);
+		apply_zoom(fract, 1);
 	if (button == 5)
-		printf("Molette vers arriere en [%d, %d]\n", x ,y);
-	if (button == 3)
-		printf("Clic molette en [%d, %d]\n", x ,y);*/
-	x = 0;
-	y = 0;
-	button = 0;
-	fract->end = 0;
+		apply_zoom(fract, 0);
+	mandel(fract);
 	return (0);
 }
