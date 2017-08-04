@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/02 02:40:30 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/04 02:06:35 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define IMGY fract->image_y
 # define ZX (IMGX / (X2 - X1))
 # define ZY (IMGY / (Y2 - Y1))
+# define compteur register unsigned int
 
 typedef struct		s_fract
 {
@@ -52,10 +53,9 @@ typedef struct		s_fract
 	double			image_x;
 	double			image_y;
 	int				it_max;
-	int				c;
 	int				auto_zoom;
-	struct	s_mdb	*mdb;
 	int				blue;
+	struct	s_mdb	*mdb;
 }					t_fract;
 
 typedef struct		s_mdb

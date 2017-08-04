@@ -6,32 +6,44 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/02 02:51:27 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/04 02:09:51 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	mandel_next(t_fract *fract)
+static void		mandel_next(t_fract *fract)
 {
-	while (fract->mdb->zr * fract->mdb->zr + fract->mdb->zi *
-			fract->mdb->zi < 4 && fract->mdb->i < fract->it_max)
+	long double		zr;
+	long double		zi;
+	long double		cr;
+	long double		ci;
+	long double		tmp;
+
+	zr = fract->mdb->zr;
+	zi = fract->mdb->zi;
+	cr = fract->mdb->cr;
+	ci = fract->mdb->ci;
+	tmp = fract->mdb->tmp;
+	while (zr * zr + zi * zi < 4 && fract->mdb->i < fract->it_max)
 	{
-		fract->mdb->tmp = fract->mdb->zr;
-		fract->mdb->zr = fract->mdb->zr * fract->mdb->zr - fract->mdb->zi *
-			fract->mdb->zi + fract->mdb->cr;
-		fract->mdb->zi = 2 * fract->mdb->zi * fract->mdb->tmp + fract->mdb->ci;
+		tmp = zr;
+		zr = zr * zr - zi * zi + cr;
+		zi = 2 * zi * tmp + ci;
 		fract->mdb->i++;
 	}
 }
 
-void	mandel(t_fract *fract)
+void			mandel(t_fract *fract)
 {
 	int		x;
 	int		y;
 
-	x = fract->x;
-	y = fract->y;
+	x = fract->x - 1;
+	y = fract->y - 1;
+	mlx_destroy_image(fract->mlx, fract->vimg);
+	fract->vimg = mlx_new_image(fract->mlx, fract->image_x, fract->image_y);
+	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
 	while (x < IMGX + fract->x)
 	{
 		while (y < IMGY + fract->y)
@@ -44,9 +56,10 @@ void	mandel(t_fract *fract)
 			mandel_next(fract);
 			if (fract->mdb->i != fract->it_max)
 				get_color(fract, x - fract->x, y - fract->y);
-			y++;
+			++y;
 		}
-		x++;
+		++x;
 		y = fract->y;
 	}
+	mlx_put_image_to_window(fract->mlx, fract->win, fract->vimg, 0, 0);
 }

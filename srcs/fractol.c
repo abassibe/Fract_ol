@@ -6,13 +6,13 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/02 02:52:21 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/04 02:11:17 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void		usage(void)
+static void		usage(void)
 {
 	write (2, "Usage : fractol [number]\n", 25);
 	write (2, "- 1 for Mandelbrot\n", 19);
@@ -20,11 +20,15 @@ void		usage(void)
 	write (2, "- 3 pour on sait pas encore\n", 28);
 }
 
-t_mdb		*init_mdb()
+static t_mdb	*init_mdb()
 {
 	t_mdb	*new;
 
-	new = (t_mdb *)malloc(sizeof(t_mdb));
+	if(!(new = (t_mdb *)malloc(sizeof(t_mdb))))
+	{
+		write(1, "Error malloc\n", 13);
+		exit (0);
+	}
 	new->cr = 0;
 	new->ci = 0;
 	new->zr = 0;
@@ -34,11 +38,15 @@ t_mdb		*init_mdb()
 	return (new);
 }
 
-t_fract		*init_struct(char c)
+static t_fract	*init_struct(char c)
 {
 	t_fract		*new;
 
-	new = (t_fract *)malloc(sizeof(t_fract));
+	if (!(new = (t_fract *)malloc(sizeof(t_fract))))
+	{
+		write(1, "Error malloc\n", 13);
+		exit (0);
+	}
 	if (c == 49)
 		new->title = ft_strdup("Mandelbrot");
 	else if (c == 50)
@@ -52,22 +60,27 @@ t_fract		*init_struct(char c)
 	new->x2 = 0.6;
 	new->y1 = -1.2;
 	new->y2 = 1.2;
-	new->it_max = 130;
+	new->it_max = 50;
 	new->image_x = 600;
 	new->image_y = 400;
-	new->blue = 100;
+	new->blue = 255;
 	new->mdb = init_mdb();
+	new->mlx = mlx_init();
+	new->vimg = mlx_new_image(new->mlx, new->image_x, new->image_y);
+	new->img = mlx_get_data_addr(new->vimg, &new->bpp, &new->sl, &new->end);
 	return (new);
 }
 
-int			mouseover(int x, int y, t_fract *fract)
+static int		mouseover(int x, int y, t_fract *fract)
 {
-	printf("Coordonnees : [%d, %d]\n", x, y);
+//	printf("Coordonnees : [%d, %d]\n", x, y);
+	x = 0;
+	y = 0;
 	fract->end = 0;
 	return (0);
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_fract		*fract;
 
@@ -77,12 +90,8 @@ int			main(int ac, char **av)
 		return (0);
 	}
 	fract = init_struct(av[1][0]);
-	fract->mlx = mlx_init();
 	fract->win = mlx_new_window(fract->mlx, IMGX, IMGY, fract->title);
-	fract->vimg = mlx_new_image(fract->mlx, IMGX, IMGY);
-	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
 	mandel(fract);
-	mlx_put_image_to_window(fract->mlx, fract->win, fract->vimg, 0, 0);
 	mlx_hook(fract->win, MOTION_NOTIFY, PTR_MOTION_MASK, &mouseover, fract);
 	mlx_hook(fract->win, 2, 3, &key_input, fract);
 	mlx_mouse_hook(fract->win, &mouse_input, fract);
