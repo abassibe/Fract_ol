@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/04 03:20:23 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/04 05:48:10 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct		s_fract
 	double			y2;
 	double			image_x;
 	double			image_y;
+	int				zoom;
 	int				mouse_x;
 	int				mouse_y;
 	int				it_max;
@@ -76,5 +77,6 @@ int					auto_zoom(t_fract *fract);
 int					mouse_input(int button, int x, int y, t_fract *fract);
 void				get_color(t_fract *fract, int x, int y);
 void				apply_zoom(t_fract *fract, int check);
+void				put_infos(t_fract * fract);
 
 #endif
