@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 05:21:02 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/04 02:06:58 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/05 04:41:48 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 int		auto_zoom(t_fract *fract)
 {
+	double	mouseRe;
+	double	mouseIm;
+	double	interpolation;
+
+	interpolation = 0;
 	if (fract->auto_zoom == 1)
 	{
-		mlx_destroy_image(fract->mlx, fract->vimg);
-//		X -= 1;
-		mandel(fract);
-		mlx_put_image_to_window(fract->mlx, fract->win, fract->vimg, 0, 0);
-		mlx_do_sync(fract->mlx);
+		mouseRe = fract->mouse_x / (IMGX / (X2 - X1)) + X1;
+		mouseIm = fract->mouse_y / (IMGY / (Y2 - Y1)) + Y1;
+		interpolation = 1.0 / 1.02;
+		fract->zoom++;
+		X1 = mouseRe + ((X1 - mouseRe) * interpolation);
+		Y1 = mouseIm + ((Y1 - mouseIm) * interpolation);
+		X2 = mouseRe + ((X2 - mouseRe) * interpolation);
+		Y2 = mouseIm + ((Y2 - mouseIm) * interpolation);
 	}
+	mandel(fract);
 	return (0);
 }

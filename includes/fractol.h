@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/05 02:11:58 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/05 02:50:19 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_fract
 {
 	void			*mlx;
 	void			*win;
+	void			*win_infos;
 	void			*vimg;
 	char			*img;
 	int				sl;
