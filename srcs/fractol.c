@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/05 02:04:38 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/05 02:17:15 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,12 @@ static void		usage(void)
 	write (2, "- 3 pour on sait pas encore\n", 28);
 }
 
-static t_mdb	*init_mdb()
-{
-	t_mdb	*new;
-
-	if (!(new = (t_mdb *)malloc(sizeof(t_mdb))))
-	{
-		write(1, "Error malloc\n", 13);
-		exit (0);
-	}
-	new->cr = 0;
-	new->ci = 0;
-	new->zr = 0;
-	new->zi = 0;
-	new->tmp = 0;
-	new->i = 0;
-	return (new);
-}
-
 static t_fract	*init_struct(char c)
 {
 	t_fract		*new;
+	t_mdb	*mdbnew;
 
-	if (!(new = (t_fract *)malloc(sizeof(t_fract))))
+	if (!(new = (t_fract *)malloc(sizeof(t_fract))) || !(mdbnew = (t_mdb *)malloc(sizeof(t_mdb))))
 	{
 		write(1, "Error malloc\n", 13);
 		exit (0);
@@ -53,21 +36,8 @@ static t_fract	*init_struct(char c)
 		new->title = ft_strdup("Julia");
 	else if (c == 51)
 		new->title = ft_strdup("L'autre");
-	new->x = 0;
-	new->y = 0;
-	new->auto_zoom = 0;
-	new->x1 = -2.1;
-	new->x2 = 0.6;
-	new->y1 = -1.2;
-	new->y2 = 1.2;
-	new->it_max = 50;
-	new->image_x = 600;
-	new->image_y = 400;
-	new->blue = 255;
-	new->mouse_x = 0;
-	new->mouse_y = 0;
-	new->zoom = 0;
-	new->mdb = init_mdb();
+	new->mdb = mdbnew;
+	set_struct(new);
 	new->mlx = mlx_init();
 	new->vimg = mlx_new_image(new->mlx, new->image_x, new->image_y);
 	new->img = mlx_get_data_addr(new->vimg, &new->bpp, &new->sl, &new->end);

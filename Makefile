@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/08/04 05:34:36 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/05 02:10:43 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS =	fractol.c \
 		mouse_input.c \
 		color.c \
 		zoom.c \
-		infos.c
+		infos.c \
+		set_struct.c
 
 OBJS = $(SRCS:.c=.o)
 

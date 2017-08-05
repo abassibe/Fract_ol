@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/05 02:00:24 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/05 02:11:58 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int					mouse_input(int button, int x, int y, t_fract *fract);
 void				get_color(t_fract *fract, int x, int y);
 void				apply_zoom(t_fract *fract, int check);
 void				put_infos(t_fract * fract);
+void				set_struct(t_fract *fract);
 
 #endif
