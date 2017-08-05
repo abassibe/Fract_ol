@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/04 05:23:16 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/05 02:04:38 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_mdb	*init_mdb()
 {
 	t_mdb	*new;
 
-	if(!(new = (t_mdb *)malloc(sizeof(t_mdb))))
+	if (!(new = (t_mdb *)malloc(sizeof(t_mdb))))
 	{
 		write(1, "Error malloc\n", 13);
 		exit (0);
@@ -66,6 +66,7 @@ static t_fract	*init_struct(char c)
 	new->blue = 255;
 	new->mouse_x = 0;
 	new->mouse_y = 0;
+	new->zoom = 0;
 	new->mdb = init_mdb();
 	new->mlx = mlx_init();
 	new->vimg = mlx_new_image(new->mlx, new->image_x, new->image_y);

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/04 06:02:11 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/05 01:53:02 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ static void		mandel_next(t_fract *fract)
 		tmp = zr;
 		zr = zr * zr - zi * zi + cr;
 		zi = 2 * zi * tmp + ci;
-		if (zr == tmp && zi == fract->mdb->zi)
+/*		if (zr == tmp && zi == fract->mdb->zi)
 		{
 			fract->mdb->i = fract->it_max;
 			break ;
-		}
+		}*/
 		fract->mdb->i++;
 	}
 }
