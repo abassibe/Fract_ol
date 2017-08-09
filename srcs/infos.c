@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/04 05:23:57 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/05 04:33:57 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/09 03:47:00 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	put_infos(t_fract *fract)
 	cadre(fract);
 	mlx_string_put(fract->mlx, fract->win_infos, 87, 200, 0xff0000, "----INFOS----");
 	mlx_string_put(fract->mlx, fract->win_infos, 18, 217, 0xffffff, "Iterations :");
-	mlx_string_put(fract->mlx, fract->win_infos, 145, 217, 0xffffff, ft_itoa(fract->it_max));
+	mlx_string_put(fract->mlx, fract->win_infos, 145, 217, 0xffffff, ft_itoa(fract->mdb->it_max));
 	mlx_string_put(fract->mlx, fract->win_infos, 18, 234, 0xffffff, "Zoom :");
 	mlx_string_put(fract->mlx, fract->win_infos, 85, 234, 0xffffff, ft_itoa(fract->zoom));
 	mlx_string_put(fract->mlx, fract->win_infos, 18, 251, 0xffffff, "Zoom focus :");

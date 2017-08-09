@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:23:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/05 02:12:00 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/09 03:33:28 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static void		key_input3(int keycode, t_fract *fract)
 {
 /*	ITERATION + */
 	if (keycode == 121)
-		fract->it_max -= 10;
+		fract->mdb->it_max -= 10;
 /*	ITERATION - */
 	if (keycode == 116)
-		fract->it_max += 10;
+		fract->mdb->it_max += 10;
 	key_input4(keycode, fract);
 }
 
@@ -59,6 +59,6 @@ int				key_input(int keycode, t_fract *fract)
 	if (keycode == 124)
 		fract->x += 10;
 	key_input2(keycode, fract);
-	mandel(fract);
+	fract->fractal(fract);
 	return (0);
 }

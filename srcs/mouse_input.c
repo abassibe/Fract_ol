@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 01:46:45 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/04 04:46:56 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/09 03:17:20 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ int		mouse_input(int button, int x, int y, t_fract *fract)
 		apply_zoom(fract, 1);
 	if (button == 5)
 		apply_zoom(fract, 0);
-	mandel(fract);
+	fract->fractal(fract);
 	return (0);
 }

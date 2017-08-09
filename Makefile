@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/08/05 02:10:43 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/09 04:16:44 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = fractol
 SRCS =	fractol.c \
 		key_input.c \
 		mandel.c \
+		julia.c \
 		auto_zoom.c \
 		mouse_input.c \
 		color.c \
@@ -34,8 +35,9 @@ $(NAME):
 	@gcc $(FLAGS) -c $(addprefix $(SRCPATH), $(SRCS)) \
 		-I includes/
 	@make -C libft
-	@gcc $(FLAGS) $(OBJS) libft/libft.a -o $(NAME) \
-		-L. -lmlx -framework OpenGL -framework AppKit
+	@make -C ressources
+	@gcc $(FLAGS) $(OBJS) libft/libft.a ressources/libmlx.a -o $(NAME) \
+		-L. -framework OpenGL -framework AppKit
 
 .PHONY: all clean fclean re
 

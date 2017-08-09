@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/05 03:10:11 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/09 04:17:38 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,44 @@ static void		usage(void)
 	write (2, "- 3 pour on sait pas encore\n", 28);
 }
 
-static t_fract	*init_struct(char c)
+static t_fract	*init_struct(void)
 {
 	t_fract		*new;
-	t_mdb	*mdbnew;
+	t_mdb		*mdbnew;
 
-	if (!(new = (t_fract *)malloc(sizeof(t_fract))) || !(mdbnew = (t_mdb *)malloc(sizeof(t_mdb))))
+	if (!(new = (t_fract *)malloc(sizeof(t_fract))) ||
+			!(mdbnew = (t_mdb *)malloc(sizeof(t_mdb))))
 	{
 		write(1, "Error malloc\n", 13);
 		exit (0);
 	}
-	if (c == 49)
-		new->title = ft_strdup("Mandelbrot");
-	else if (c == 50)
-		new->title = ft_strdup("Julia");
-	else if (c == 51)
-		new->title = ft_strdup("L'autre");
 	new->mdb = mdbnew;
 	set_struct(new);
 	new->mlx = mlx_init();
 	new->vimg = mlx_new_image(new->mlx, new->image_x, new->image_y);
 	new->img = mlx_get_data_addr(new->vimg, &new->bpp, &new->sl, &new->end);
 	return (new);
+}
+
+static void		assign(t_fract *fract, char c)
+{
+	if (c == 49)
+	{
+		fract->title = ft_strdup("Mandelbrot");
+		fract->fractal = mandel;
+		set_mandelbrot(fract->mdb);
+	}
+	else if (c == 50)
+	{
+		fract->title = ft_strdup("Julia");
+		fract->fractal = julia;
+		set_julia(fract->mdb);
+	}
+/*	else if (c == 51)
+	{
+		fract->title = ft_strdup("L'autre");
+		fract->fract_func = autre(fract);
+	}*/
 }
 
 static int		mouseover(int x, int y, t_fract *fract)
@@ -60,10 +76,11 @@ int				main(int ac, char **av)
 		usage();
 		return (0);
 	}
-	fract = init_struct(av[1][0]);
-	fract->win = mlx_new_window(fract->mlx, IMGX, IMGY, fract->title);
+	fract = init_struct();
+	assign(fract, av[1][0]);
 	fract->win_infos = mlx_new_window(fract->mlx, 305, 500, "Infos");
-	mandel(fract);
+	fract->win = mlx_new_window(fract->mlx, IMGX, IMGY, fract->title);
+	fract->fractal(fract);
 	mlx_hook(fract->win, MOTION_NOTIFY, PTR_MOTION_MASK, &mouseover, fract);
 	mlx_hook(fract->win, 2, 3, &key_input, fract);
 	mlx_mouse_hook(fract->win, &mouse_input, fract);
