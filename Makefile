@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/08/09 04:16:44 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/09 06:10:27 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ $(NAME):
 	@gcc $(FLAGS) -c $(addprefix $(SRCPATH), $(SRCS)) \
 		-I includes/
 	@make -C libft
-	@make -C ressources
 	@gcc $(FLAGS) $(OBJS) libft/libft.a ressources/libmlx.a -o $(NAME) \
 		-L. -framework OpenGL -framework AppKit
 

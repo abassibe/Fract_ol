@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 04:08:16 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/09 06:03:54 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct		s_fract
 	int				blue;
 	struct	s_mdb	*mdb;
 	void			(*fractal)();
+	int				stop_mouse;
+	char			opt;
 }					t_fract;
 
 typedef struct		s_mdb
@@ -84,5 +86,6 @@ void				put_infos(t_fract * fract);
 void				set_struct(t_fract *fract);
 void				set_mandelbrot(t_mdb *mdb);
 void				set_julia(t_mdb *mdb);
+void				assign(t_fract *fract, char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 02:10:48 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 03:46:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/09 06:09:49 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void		set_julia(t_mdb *mdb)
 {
-	mdb->cr = 0;
-	mdb->ci = 0;
+	mdb->cr = 0.4;
+	mdb->ci = 0.2;
 	mdb->zr = 0;
 	mdb->zi = 0;
 	mdb->tmp = 0;
@@ -54,4 +54,6 @@ void			set_struct(t_fract * fract)
 	fract->mouse_y = 0;
 	fract->zoom = 0;
 	fract->blue = 0;
+	fract->stop_mouse = 0;
+	fract->opt = 0;
 }

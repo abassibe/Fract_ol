@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 04:17:38 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/09 06:04:40 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,25 @@ static t_fract	*init_struct(void)
 	return (new);
 }
 
-static void		assign(t_fract *fract, char c)
+void		assign(t_fract *fract, char c)
 {
 	if (c == 49)
 	{
+		fract->opt = '1';
 		fract->title = ft_strdup("Mandelbrot");
 		fract->fractal = mandel;
 		set_mandelbrot(fract->mdb);
 	}
 	else if (c == 50)
 	{
+		fract->opt = '2';
 		fract->title = ft_strdup("Julia");
 		fract->fractal = julia;
 		set_julia(fract->mdb);
 	}
 /*	else if (c == 51)
 	{
+		fract->opt = '3';
 		fract->title = ft_strdup("L'autre");
 		fract->fract_func = autre(fract);
 	}*/
@@ -62,6 +65,8 @@ static void		assign(t_fract *fract, char c)
 
 static int		mouseover(int x, int y, t_fract *fract)
 {
+	if (((x < 0 || x > 600 || y < 0 || y > 400) && fract->opt == '2') || fract->stop_mouse == 1)
+		return (0);
 	fract->mouse_x = x;
 	fract->mouse_y = y;
 	return (0);
