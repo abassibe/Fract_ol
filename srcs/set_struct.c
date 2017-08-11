@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 02:10:48 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 06:09:49 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/11 02:03:28 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void		set_mandelbrot(t_mdb *mdb)
 	mdb->zi = 0;
 	mdb->tmp = 0;
 	mdb->i = 0;
-	mdb->x1 = -2.1;
-	mdb->x2 = 0.6;
-	mdb->y1 = -1.2;
-	mdb->y2 = 1.2;
+	mdb->x1 = -2.5;
+	mdb->x2 = 1;
+	mdb->y1 = -1;
+	mdb->y2 = 1;
 	mdb->it_max = 50;
 }
 
@@ -53,7 +53,6 @@ void			set_struct(t_fract * fract)
 	fract->mouse_x = 0;
 	fract->mouse_y = 0;
 	fract->zoom = 0;
-	fract->blue = 0;
 	fract->stop_mouse = 0;
 	fract->opt = 0;
 }

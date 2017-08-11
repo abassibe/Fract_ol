@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:23:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 06:13:33 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/11 01:41:19 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 static void		key_input4(int keycode, t_fract *fract)
 {
+	char	tmp;
+
+	tmp = fract->opt;
 	if (keycode == 69)
 		apply_zoom(fract, 1);
 	if (keycode == 78)
 		apply_zoom(fract, 0);
 	if (keycode == 117)
 	{
-		assign(fract, fract->opt);
 		set_struct(fract);
+		fract->opt = tmp;
+		assign(fract, fract->opt);
 	}
 	if (keycode == 115)
 		fract->auto_zoom = !fract->auto_zoom;

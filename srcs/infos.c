@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/04 05:23:57 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 03:47:00 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/11 01:43:24 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@ static void		put_infos2(t_fract *fract)
 	mlx_string_put(fract->mlx, fract->win_infos, 18, 103, 0xffffff, "PgDn : decrease iterations");
 	mlx_string_put(fract->mlx, fract->win_infos, 18, 120, 0xffffff, "Del : reset");
 	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "Home : auto-zoom");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "P : enable/disable mouse");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "Escape : leave program");
 }
-
-
-
-
 
 void	put_infos(t_fract *fract)
 {
