@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 06:03:54 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/11 05:06:58 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <math.h>
 # include "libft.h"
+# include <pthread.h>
 # include <stdio.h>
 # include "../ressources/mlx.h"
 
