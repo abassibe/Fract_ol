@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/08/09 06:10:27 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/12 02:45:28 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS =	fractol.c \
 		color.c \
 		zoom.c \
 		infos.c \
-		set_struct.c
+		set_struct.c \
+		thread.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -36,7 +37,7 @@ $(NAME):
 		-I includes/
 	@make -C libft
 	@gcc $(FLAGS) $(OBJS) libft/libft.a ressources/libmlx.a -o $(NAME) \
-		-L. -framework OpenGL -framework AppKit
+		-L. -framework OpenGL -framework AppKit -lpthread
 
 .PHONY: all clean fclean re
 

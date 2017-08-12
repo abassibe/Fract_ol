@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/11 05:06:39 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/12 02:54:07 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int				main(int ac, char **av)
 	assign(fract, av[1][0]);
 	fract->win_infos = mlx_new_window(fract->mlx, 305, 500, "Infos");
 	fract->win = mlx_new_window(fract->mlx, IMGX, IMGY, fract->title);
-	fract->fractal(fract);
+	crea_thread(fract);
 	mlx_hook(fract->win, MOTION_NOTIFY, PTR_MOTION_MASK, &mouseover, fract);
 	mlx_hook(fract->win, 2, 3, &key_input, fract);
 	mlx_mouse_hook(fract->win, &mouse_input, fract);

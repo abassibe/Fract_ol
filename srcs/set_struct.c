@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 02:10:48 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/11 05:01:53 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/12 03:28:04 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void			set_struct(t_fract * fract)
 	fract->zoom = 0;
 	fract->stop_mouse = 0;
 	fract->opt = 0;
+	fract->nbt = 0;
 }

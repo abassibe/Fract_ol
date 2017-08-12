@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/11 05:06:58 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/12 04:45:19 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define Y fract->y
 # define PTR_MOTION_MASK (1L<<6)
 # define MOTION_NOTIFY 6
+# define THREAD 8
 # define X1 fract->mdb->x1
 # define X2 fract->mdb->x2
 # define Y1 fract->mdb->y1
@@ -33,7 +34,14 @@
 # define IMGY fract->image_y
 # define ZX (IMGX / (X2 - X1))
 # define ZY (IMGY / (Y2 - Y1))
-# define compteur register unsigned int
+# define NBT fract->nbt
+
+typedef struct		s_tst
+{
+	int				i;
+	struct s_tst	*next;
+	pthread_mutex_t mutex;
+}					t_tst;
 
 typedef struct		s_fract
 {
@@ -50,15 +58,18 @@ typedef struct		s_fract
 	int				y;
 	double			image_x;
 	double			image_y;
+	pthread_t		t[THREAD];
+	int				nbt;
 	int				zoom;
 	int				mouse_x;
 	int				mouse_y;
 	int				auto_zoom;
 	int				blue;
 	struct	s_mdb	*mdb;
-	void			(*fractal)();
+	void			*(*fractal)();
 	int				stop_mouse;
 	char			opt;
+	struct s_tst	*tst;
 }					t_fract;
 
 typedef struct		s_mdb
@@ -77,8 +88,8 @@ typedef struct		s_mdb
 }					t_mdb;
 
 int					key_input(int keycode, t_fract *fract);
-void				mandel(t_fract *fract);
-void				julia(t_fract *fract);
+void				*mandel(t_fract *fract, int x, int y);
+void				*julia(t_fract *fract, int x, int y);
 int					auto_zoom(t_fract *fract);
 int					mouse_input(int button, int x, int y, t_fract *fract);
 void				get_color(t_fract *fract, int x, int y);
@@ -88,5 +99,6 @@ void				set_struct(t_fract *fract);
 void				set_mandelbrot(t_mdb *mdb);
 void				set_julia(t_mdb *mdb);
 void				assign(t_fract *fract, char c);
+void				crea_thread(t_fract *fract);
 
 #endif
