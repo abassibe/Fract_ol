@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 01:46:45 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 04:38:45 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/12 06:14:47 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ int		mouse_input(int button, int x, int y, t_fract *fract)
 	fract->mouse_x = x;
 	fract->mouse_y = y;
 	if (button == 4)
+	{
 		apply_zoom(fract, 1);
+	crea_thread(fract);
+	}
 	if (button == 5)
+	{
 		apply_zoom(fract, 0);
-	fract->fractal(fract);
+	crea_thread(fract);
+	}
 	return (0);
 }

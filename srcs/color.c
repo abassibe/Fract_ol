@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 02:36:51 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/12 00:56:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/12 06:12:37 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_color(t_fract *fract, int x, int y)
 {
-	int		i;
+	unsigned int		i;
 
 //	if (fract->psyche == 1)
 //	{

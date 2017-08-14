@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/12 04:45:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/12 06:41:09 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@
 # define ZY (IMGY / (Y2 - Y1))
 # define NBT fract->nbt
 
-typedef struct		s_tst
-{
-	int				i;
-	struct s_tst	*next;
-	pthread_mutex_t mutex;
-}					t_tst;
-
 typedef struct		s_fract
 {
 	void			*mlx;
@@ -69,7 +62,6 @@ typedef struct		s_fract
 	void			*(*fractal)();
 	int				stop_mouse;
 	char			opt;
-	struct s_tst	*tst;
 }					t_fract;
 
 typedef struct		s_mdb
