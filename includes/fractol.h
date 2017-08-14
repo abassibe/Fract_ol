@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/12 04:45:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/12 05:27:23 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,18 @@
 # define ZY (IMGY / (Y2 - Y1))
 # define NBT fract->nbt
 
-typedef struct		s_tst
+
+typedef struct		s_thread
 {
-	int				i;
-	struct s_tst	*next;
-	pthread_mutex_t mutex;
-}					t_tst;
+	int				id;
+	struct s_fract	*fract;
+}					t_thread;
+
+typedef struct		s_render
+{
+	pthread_t		threads[THREAD];
+	t_thread		args[THREAD];
+}					t_render;
 
 typedef struct		s_fract
 {
@@ -56,9 +62,9 @@ typedef struct		s_fract
 	char			*title;
 	int				x;
 	int				y;
-	double			image_x;
-	double			image_y;
-	pthread_t		t[THREAD];
+	int				image_x;
+	int				image_y;
+	t_render		render;
 	int				nbt;
 	int				zoom;
 	int				mouse_x;

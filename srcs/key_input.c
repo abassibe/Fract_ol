@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:23:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/11 01:41:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/12 05:51:11 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ int				key_input(int keycode, t_fract *fract)
 	if (keycode == 35)
 		fract->stop_mouse = !fract->stop_mouse;
 	key_input2(keycode, fract);
-	fract->fractal(fract);
+	//fract->fractal(fract);
 	return (0);
 }
