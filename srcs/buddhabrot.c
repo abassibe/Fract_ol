@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/15 02:47:08 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/15 03:40:38 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/15 05:29:20 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 static void		buddha_next(t_fract *fract)
 {
-	write(1, "test\n", 5);
-	printf("test2\n");
 	long double		zr;
 	long double		zi;
 	long double		cr;
 	long double		ci;
 	long double		tmp;
-	int				tab[10000000];
-	long int		i;
+	int		tab[10000] = {0};
+	int		i;
 
 	zr = fract->mdb->zr;
 	zi = fract->mdb->zi;
@@ -40,17 +38,16 @@ static void		buddha_next(t_fract *fract)
 		tab[i + 1] = (zi - Y1) * ZY;
 		i += 2;
 	}
-	tab[i] = 0;
 	i = 0;
 	while (tab[i])
 	{
-		printf("x = %d, y = %d\n", tab[i], tab[i + 1]);
-		get_color(fract, tab[i] - X, tab[i + 1] - Y);
+		if (fract->mdb->i != fract->mdb->it_max && (tab[i] && tab[i + 1]))
+			get_color(fract, tab[i] - X, tab[i + 1] - Y);
 		i += 2;
 	}
 }
 
-void	buddha(t_fract *fract)
+void			buddha(t_fract *fract)
 {
 	int		x;
 	int		y;
@@ -69,10 +66,7 @@ void	buddha(t_fract *fract)
 			fract->mdb->zr = 0;
 			fract->mdb->zi = 0;
 			fract->mdb->i = 0;
-			printf("test1\n");
 			buddha_next(fract);
-//			if (fract->mdb->i != fract->mdb->it_max)
-//				get_color(fract, x - X, y - Y);
 		}
 		y = Y;
 	}

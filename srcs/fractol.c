@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/15 03:34:00 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/15 05:31:23 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void		usage(void)
 {
-	write (2, "Usage : fractol [number]\n", 25);
-	write (2, "- 1 for Mandelbrot\n", 19);
-	write (2, "- 2 for Julia\n", 14);
-	write (2, "- 3 for Buddhabrot\n", 28);
+	write (1, "Usage : fractol [number]\n", 25);
+	write (1, "- 1 for Mandelbrot\n", 19);
+	write (1, "- 2 for Julia\n", 14);
+	write (1, "- 3 for Buddhabrot\n", 28);
 }
 
 static t_fract	*init_struct(void)
@@ -28,7 +28,7 @@ static t_fract	*init_struct(void)
 	if (!(new = (t_fract *)malloc(sizeof(t_fract))) ||
 			!(mdbnew = (t_mdb *)malloc(sizeof(t_mdb))))
 	{
-		write(1, "Error malloc\n", 13);
+		write(2, "Error malloc\n", 13);
 		exit (0);
 	}
 	new->mdb = mdbnew;
