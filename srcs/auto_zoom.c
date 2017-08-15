@@ -6,7 +6,11 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 05:21:02 by abassibe          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/08/12 05:50:42 by snedir           ###   ########.fr       */
+=======
+/*   Updated: 2017/08/12 06:15:03 by abassibe         ###   ########.fr       */
+>>>>>>> cb9d7de416948da125b4b5495c323724243c12e4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +33,11 @@ int		auto_zoom(t_fract *fract)
 		Y1 = mouseIm + ((Y1 - mouseIm) * interpolation);
 		X2 = mouseRe + ((X2 - mouseRe) * interpolation);
 		Y2 = mouseIm + ((Y2 - mouseIm) * interpolation);
+	crea_thread(fract);
 	}
+<<<<<<< HEAD
 	//fract->fractal(fract);
+=======
+>>>>>>> cb9d7de416948da125b4b5495c323724243c12e4
 	return (0);
 }

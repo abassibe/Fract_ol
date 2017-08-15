@@ -6,7 +6,11 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2017/08/12 05:44:23 by snedir           ###   ########.fr        #
+=======
+#    Updated: 2017/08/12 05:41:45 by abassibe         ###   ########.fr        #
+>>>>>>> cb9d7de416948da125b4b5495c323724243c12e4
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +41,7 @@ $(NAME):
 		-I includes/
 	@make -C libft
 	@gcc $(FLAGS) $(OBJS) libft/libft.a ressources/libmlx.a -o $(NAME) \
-		-L. -framework OpenGL -framework AppKit -lpthread
+		-L. -framework OpenGL -framework AppKit -lpthread -D_REENTRANT -DLinux
 
 .PHONY: all clean fclean re
 
