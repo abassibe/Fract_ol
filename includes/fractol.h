@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/11 05:06:58 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/15 03:35:04 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct		s_fract
 	int				mouse_x;
 	int				mouse_y;
 	int				auto_zoom;
-	int				blue;
 	struct	s_mdb	*mdb;
 	void			(*fractal)();
 	int				stop_mouse;
@@ -79,6 +78,7 @@ typedef struct		s_mdb
 int					key_input(int keycode, t_fract *fract);
 void				mandel(t_fract *fract);
 void				julia(t_fract *fract);
+void				buddha(t_fract *fract);
 int					auto_zoom(t_fract *fract);
 int					mouse_input(int button, int x, int y, t_fract *fract);
 void				get_color(t_fract *fract, int x, int y);
@@ -87,6 +87,7 @@ void				put_infos(t_fract * fract);
 void				set_struct(t_fract *fract);
 void				set_mandelbrot(t_mdb *mdb);
 void				set_julia(t_mdb *mdb);
+void				set_buddha(t_mdb *mdb);
 void				assign(t_fract *fract, char c);
 
 #endif

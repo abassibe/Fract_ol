@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/11 05:06:39 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/15 03:34:00 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		usage(void)
 	write (2, "Usage : fractol [number]\n", 25);
 	write (2, "- 1 for Mandelbrot\n", 19);
 	write (2, "- 2 for Julia\n", 14);
-	write (2, "- 3 pour on sait pas encore\n", 28);
+	write (2, "- 3 for Buddhabrot\n", 28);
 }
 
 static t_fract	*init_struct(void)
@@ -55,17 +55,19 @@ void		assign(t_fract *fract, char c)
 		fract->fractal = julia;
 		set_julia(fract->mdb);
 	}
-/*	else if (c == 51)
+	else if (c == 51)
 	{
 		fract->opt = '3';
-		fract->title = ft_strdup("L'autre");
-		fract->fract_func = autre(fract);
-	}*/
+		fract->title = ft_strdup("Buddhabrot");
+		fract->fractal = buddha;
+		set_buddha(fract->mdb);
+	}
 }
 
 static int		mouseover(int x, int y, t_fract *fract)
 {
-	if (((x < 0 || x > 600 || y < 0 || y > 400) && fract->opt == '2') || fract->stop_mouse == 1)
+	if (((x < 0 || x > 600 || y < 0 || y > 400) && fract->opt == '2') ||
+			fract->stop_mouse == 1)
 		return (0);
 	fract->mouse_x = x;
 	fract->mouse_y = y;
