@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/08/15 03:50:51 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/16 05:36:39 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,4 +50,3 @@ fclean: clean
 	@rm -rf libft/libft.a $(NAME)
 
 re: fclean all
-

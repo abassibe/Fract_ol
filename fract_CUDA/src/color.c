@@ -6,11 +6,12 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 02:36:51 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/16 03:23:33 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/16 05:47:34 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "../header/fractol.h"
+#include "../cudaheader/cuda_call.h"
 /*
 void	get_color(t_fract *fract, int x, int y)
 {

@@ -1,43 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandel.c                                           :+:      :+:    :+:   */
+/*   bouddhabrot.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/16 04:55:07 by abassibe         ###   ########.fr       */
+/*   Created: 2017/08/15 02:47:08 by abassibe          #+#    #+#             */
+/*   Updated: 2017/08/15 05:29:20 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "../header/fractol.h"
+#include "../cudaheader/cuda_call.h"
 
-static void		mandel_next(t_fract *fract)
+static void		buddha_next(t_fract *fract)
 {
 	long double		zr;
 	long double		zi;
 	long double		cr;
 	long double		ci;
 	long double		tmp;
+	int		tab[10000] = {0};
+	int		i;
 
 	zr = fract->mdb->zr;
 	zi = fract->mdb->zi;
 	cr = fract->mdb->cr;
 	ci = fract->mdb->ci;
 	tmp = fract->mdb->tmp;
-	while (zr * zr + zi * zi < 10 && fract->mdb->i < fract->mdb->it_max)
+	i = 0;
+	while (zr * zr + zi * zi < 4 && fract->mdb->i < fract->mdb->it_max)
 	{
 		tmp = zr;
 		zr = zr * zr - zi * zi + cr;
 		zi = 2 * zi * tmp + ci;
 		fract->mdb->i++;
+		tab[i] = (zr - X1) * ZX;
+		tab[i + 1] = (zi - Y1) * ZY;
+		i += 2;
 	}
-	fract->mdb->zr = zr;
-	fract->mdb->zi = zi;
-
+	i = 0;
+	while (tab[i])
+	{
+		if (fract->mdb->i != fract->mdb->it_max && (tab[i] && tab[i + 1]))
+			get_color(fract, tab[i] - X, tab[i + 1] - Y);
+		i += 2;
+	}
 }
 
-void			mandel(t_fract *fract)
+void			buddha(t_fract *fract)
 {
 	int		x;
 	int		y;
@@ -56,9 +67,7 @@ void			mandel(t_fract *fract)
 			fract->mdb->zr = 0;
 			fract->mdb->zi = 0;
 			fract->mdb->i = 0;
-			mandel_next(fract);
-			if (fract->mdb->i != fract->mdb->it_max)
-				get_color(fract, x - X, y - Y);
+			buddha_next(fract);
 		}
 		y = Y;
 	}

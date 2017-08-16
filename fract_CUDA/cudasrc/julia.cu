@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandel.c                                           :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/16 04:55:07 by abassibe         ###   ########.fr       */
+/*   Created: 2017/08/05 05:21:59 by abassibe          #+#    #+#             */
+/*   Updated: 2017/08/09 05:50:31 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "../header/fractol.h"
+#include "../cudaheader/cuda_call.h"
 
-static void		mandel_next(t_fract *fract)
+static void		julia_next(t_fract *fract)
 {
 	long double		zr;
 	long double		zi;
@@ -25,19 +26,16 @@ static void		mandel_next(t_fract *fract)
 	cr = fract->mdb->cr;
 	ci = fract->mdb->ci;
 	tmp = fract->mdb->tmp;
-	while (zr * zr + zi * zi < 10 && fract->mdb->i < fract->mdb->it_max)
+	while (zr * zr + zi * zi < 4 && fract->mdb->i < fract->mdb->it_max)
 	{
 		tmp = zr;
-		zr = zr * zr - zi * zi + cr;
-		zi = 2 * zi * tmp + ci;
+		zr = zr * zr - zi * zi - cr + (ci / (double)fract->mouse_x / (double)600);
+		zi = 2 * zi * tmp + ci / ((double)fract->mouse_y / (double)400);
 		fract->mdb->i++;
 	}
-	fract->mdb->zr = zr;
-	fract->mdb->zi = zi;
-
 }
 
-void			mandel(t_fract *fract)
+void			julia(t_fract *fract)
 {
 	int		x;
 	int		y;
@@ -51,12 +49,10 @@ void			mandel(t_fract *fract)
 	{
 		while (++y < IMGY + Y)
 		{
-			fract->mdb->cr = x / ZX + X1;
-			fract->mdb->ci = y / ZY + Y1;
-			fract->mdb->zr = 0;
-			fract->mdb->zi = 0;
+			fract->mdb->zr = x / ZX + X1;
+			fract->mdb->zi = y / ZY + Y1;
 			fract->mdb->i = 0;
-			mandel_next(fract);
+			julia_next(fract);
 			if (fract->mdb->i != fract->mdb->it_max)
 				get_color(fract, x - X, y - Y);
 		}

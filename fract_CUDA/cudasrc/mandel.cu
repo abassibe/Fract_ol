@@ -6,12 +6,13 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/16 04:55:07 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/16 04:51:55 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
-
+#include "../header/fractol.h"
+#include "../cudaheader/cuda_call.h"
+/*
 static void		mandel_next(t_fract *fract)
 {
 	long double		zr;
@@ -64,4 +65,51 @@ void			mandel(t_fract *fract)
 	}
 	mlx_put_image_to_window(fract->mlx, fract->win, fract->vimg, 0, 0);
 	put_infos(fract);
+}
+*/
+#include <cuda.h>
+#include <cuda_call.h>
+#include <stdio.h>
+
+__global__ void mandel_next(unsigned int* a, unsigned int constw, unsigned int consth, float middlex, float middley, float scale, unsigned int max)
+{
+	int row = blockIdx.y * blockDim.y + threadIdx.y;
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
+	int index = row * constw + col;
+	if(col >= constw || row >= consth) return;
+	float ci = (row * scale - middley);
+	float cr = (col * scale - middlex) ;
+	float x = 0;
+	float y = 0;
+	float xq = 0;
+	float yq = 0;
+	unsigned int iteration = 0;
+	while (iteration++ < max && (xq + yq) < 4)
+	{
+		y = 2 * x * y + ci;
+		x = xq - yq + cr;
+		xq = x * x;
+		yq = y * y;
+	}
+	a[index] = iteration;
+}
+
+extern "C" void mandel(unsigned int* a_h, unsigned int constw, unsigned int consth, float middlex, float middley, float scale, unsigned int max, unsigned int reset)
+{
+	static unsigned int *a_d = NULL;
+	static size_t size = 0;
+	static dim3 block_size(16, 16);
+	static dim3 grid_size(constw / block_size.x + (constw - constw / block_size.x), consth / block_size.y + (consth - consth / block_size.y));
+	if (!reset)
+	{
+		if (size == 0)
+		{
+			size = constw * consth * sizeof(unsigned int);
+			cudaMalloc((void **) &a_d, size);
+		}
+		mandel_next <<< grid_size, block_size, 0 >>> ((unsigned int *)a_d, constw, consth, middlex, middley, scale, max);
+		cudaMemcpy(a_h, a_d, size, cudaMemcpyDeviceToHost);
+	}
+	else
+		cudaFree(a_d);
 }
