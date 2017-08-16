@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/16 01:06:26 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/16 05:10:28 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ static void		mandel_next(t_fract *fract)
 	cr = fract->mdb->cr;
 	ci = fract->mdb->ci;
 	tmp = fract->mdb->tmp;
-	while (zr * zr + zi * zi < 4 && fract->mdb->i < fract->mdb->it_max)
+	while (zr * zr + zi * zi < 60 && fract->mdb->i < fract->mdb->it_max)
 	{
 		tmp = zr;
 		zr = zr * zr - zi * zi + cr;
 		zi = 2 * zi * tmp + ci;
 		fract->mdb->i++;
 	}
+	fract->mdb->zr = zr;
+	fract->mdb->zi = zi;
 }
 
 void			mandel(t_fract *fract)
@@ -54,7 +56,7 @@ void			mandel(t_fract *fract)
 			fract->mdb->zi = 0;
 			fract->mdb->i = 0;
 			mandel_next(fract);
-			if (fract->mdb->i != fract->mdb->it_max)
+			if (fract->mdb->i < fract->mdb->it_max)
 				get_color(fract, x - X, y - Y);
 		}
 		y = Y;
