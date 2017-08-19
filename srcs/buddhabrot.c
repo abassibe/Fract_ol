@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/15 02:47:08 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/15 05:29:20 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/19 04:04:36 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		buddha_next(t_fract *fract)
 	{
 		if (fract->mdb->i != fract->mdb->it_max && (tab[i] && tab[i + 1]))
 			get_color(fract, tab[i] - X, tab[i + 1] - Y);
-		i += 2;
+		i += 6;
 	}
 }
 
@@ -54,12 +54,13 @@ void			buddha(t_fract *fract)
 
 	x = X - 1;
 	y = Y - 1;
-	mlx_destroy_image(fract->mlx, fract->vimg);
-	fract->vimg = mlx_new_image(fract->mlx, fract->image_x, fract->image_y);
+	if (fract->img != NULL)
+		mlx_destroy_image(fract->mlx, fract->vimg);
+	fract->vimg = mlx_new_image(fract->mlx, 600, 400);
 	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
-	while (++x < IMGX + X)
+	while (++x < 600 + X)
 	{
-		while (++y < IMGY + Y)
+		while (++y < 400 + Y)
 		{
 			fract->mdb->cr = x / ZX + X1;
 			fract->mdb->ci = y / ZY + Y1;

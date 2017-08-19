@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 05:21:59 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 05:50:31 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/19 03:22:20 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void			julia(t_fract *fract)
 
 	x = X - 1;
 	y = Y - 1;
-	mlx_destroy_image(fract->mlx, fract->vimg);
-	fract->vimg = mlx_new_image(fract->mlx, fract->image_x, fract->image_y);
+	if (fract->img != NULL)
+		mlx_destroy_image(fract->mlx, fract->vimg);
+	fract->vimg = mlx_new_image(fract->mlx, IMGX, IMGY);
 	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
 	while (++x < IMGX + X)
 	{

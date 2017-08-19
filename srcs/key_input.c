@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:23:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/11 01:41:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/19 05:31:07 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,37 @@ static void		key_input3(int keycode, t_fract *fract)
 
 static void		key_input2(int keycode, t_fract *fract)
 {
-	if (keycode == 126)
-		fract->y -= 10;
-	if (keycode == 125)
-		fract->y += 10;
+	if (keycode == 18)
+		fract->color = 1;
+	if (keycode == 19)
+		fract->color = 2;
+	if (keycode == 20)
+		fract->color = 3;
+	if (keycode == 83)
+	{
+		set_struct(fract);
+		assign(fract, 49);
+	}
+	if (keycode == 84)
+	{
+		set_struct(fract);
+		assign(fract, 50);
+	}
+	if (keycode == 85)
+	{
+		set_struct(fract);
+		assign(fract, 51);
+	}
+	if (keycode == 86)
+	{
+		set_struct(fract);
+		assign(fract, 52);
+	}
+	if (keycode == 87)
+	{
+		set_struct(fract);
+		assign(fract, 53);
+	}
 	key_input3(keycode, fract);
 }
 
@@ -59,6 +86,10 @@ int				key_input(int keycode, t_fract *fract)
 		fract->x += 10;
 	if (keycode == 35)
 		fract->stop_mouse = !fract->stop_mouse;
+	if (keycode == 126)
+		fract->y -= 10;
+	if (keycode == 125)
+		fract->y += 10;
 	key_input2(keycode, fract);
 	fract->fractal(fract);
 	return (0);

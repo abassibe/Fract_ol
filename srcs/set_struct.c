@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 02:10:48 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/15 04:35:42 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/19 03:58:35 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ void		set_buddha(t_mdb *mdb)
 	mdb->zi = 0;
 	mdb->tmp = 0;
 	mdb->i = 0;
-	mdb->x1 = -2;
-	mdb->x2 = 1;
+	mdb->x1 = -1.8;
+	mdb->x2 = 0.8;
 	mdb->y1 = -1.5;
 	mdb->y2 = 1.5;
 	mdb->it_max = 50;
 }
 
-void			set_struct(t_fract * fract)
+void			set_struct(t_fract *fract)
 {
 	fract->x = 0;
 	fract->y = 0;
@@ -69,4 +69,5 @@ void			set_struct(t_fract * fract)
 	fract->zoom = 0;
 	fract->stop_mouse = 0;
 	fract->opt = 0;
+	fract->color = 1;
 }

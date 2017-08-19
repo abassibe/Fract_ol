@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/15 03:45:36 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/19 05:25:19 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # define IMGY fract->image_y
 # define ZX (IMGX / (X2 - X1))
 # define ZY (IMGY / (Y2 - Y1))
-# define compteur register unsigned int
 
 typedef struct		s_fract
 {
@@ -58,6 +57,7 @@ typedef struct		s_fract
 	void			(*fractal)();
 	int				stop_mouse;
 	char			opt;
+	int				color;
 }					t_fract;
 
 typedef struct		s_mdb
@@ -77,6 +77,8 @@ typedef struct		s_mdb
 
 int					key_input(int keycode, t_fract *fract);
 void				mandel(t_fract *fract);
+void				multi_brot_3(t_fract *fract);
+void				multi_brot_5(t_fract *fract);
 void				julia(t_fract *fract);
 void				buddha(t_fract *fract);
 int					auto_zoom(t_fract *fract);
@@ -89,5 +91,6 @@ void				set_mandelbrot(t_mdb *mdb);
 void				set_julia(t_mdb *mdb);
 void				set_buddha(t_mdb *mdb);
 void				assign(t_fract *fract, char c);
+void				rotate_matrice(t_fract *fract, int *x, int *y);
 
 #endif

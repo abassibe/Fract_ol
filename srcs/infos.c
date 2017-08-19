@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/04 05:23:57 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/15 05:30:46 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/19 05:39:45 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,15 @@ static void		put_infos2(t_fract *fract)
 	mlx_string_put(fract->mlx, fract->win_infos, 18, 120, 0xffffff, "Del : reset");
 	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "Home : auto-zoom");
 //	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "P : enable/disable mouse");
-//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "Escape : leave program");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "mouse scroll : zoom in / zoom out");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "1 : regular color");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "2 : smooth color");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "3 : psychedelic color");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "PavNum 1 : Mandelbrot");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "Pavnum 2 : Julia");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "Pavnum 3  : Buddhabrot");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "Pavnum 4 : Multibrot ^3");
+//	mlx_string_put(fract->mlx, fract->win_infos, 18, 137, 0xffffff, "Pavnum 5  : Multibrot ^5");
 }
 
 void	put_infos(t_fract *fract)
