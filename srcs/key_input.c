@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:23:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/19 05:31:07 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/22 03:34:15 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ static void		key_input3(int keycode, t_fract *fract)
 	key_input4(keycode, fract);
 }
 
+static void		key_input5(int keycode, t_fract *fract)
+{
+	if (keycode == 86)
+	{
+		set_struct(fract);
+		assign(fract, 52);
+	}
+	if (keycode == 87)
+	{
+		set_struct(fract);
+		assign(fract, 53);
+	}
+}
+
 static void		key_input2(int keycode, t_fract *fract)
 {
 	if (keycode == 18)
@@ -63,16 +77,7 @@ static void		key_input2(int keycode, t_fract *fract)
 		set_struct(fract);
 		assign(fract, 51);
 	}
-	if (keycode == 86)
-	{
-		set_struct(fract);
-		assign(fract, 52);
-	}
-	if (keycode == 87)
-	{
-		set_struct(fract);
-		assign(fract, 53);
-	}
+	key_input5(keycode, fract);
 	key_input3(keycode, fract);
 }
 

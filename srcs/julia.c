@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/05 05:21:59 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/19 03:22:20 by abassibe         ###   ########.fr       */
+/*   CReated: 2017/08/05 05:21:59 by abassibe          #+#    #+#             */
+/*   Updated: 2017/08/22 03:32:21 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,14 @@
 
 static void		julia_next(t_fract *fract)
 {
-	long double		zr;
-	long double		zi;
-	long double		cr;
-	long double		ci;
 	long double		tmp;
 
-	zr = fract->mdb->zr;
-	zi = fract->mdb->zi;
-	cr = fract->mdb->cr;
-	ci = fract->mdb->ci;
 	tmp = fract->mdb->tmp;
-	while (zr * zr + zi * zi < 4 && fract->mdb->i < fract->mdb->it_max)
+	while (ZR * ZR + ZI * ZI < 4 && fract->mdb->i < fract->mdb->it_max)
 	{
-		tmp = zr;
-		zr = zr * zr - zi * zi - cr + (ci / (double)fract->mouse_x / (double)600);
-		zi = 2 * zi * tmp + ci / ((double)fract->mouse_y / (double)400);
+		tmp = ZR;
+		ZR = ZR * ZR - ZI * ZI - CR + (CI / (double)MOUSE_X / (double)600);
+		ZI = 2 * ZI * tmp + CI / ((double)fract->mouse_y / (double)400);
 		fract->mdb->i++;
 	}
 }
@@ -44,13 +36,13 @@ void			julia(t_fract *fract)
 	if (fract->img != NULL)
 		mlx_destroy_image(fract->mlx, fract->vimg);
 	fract->vimg = mlx_new_image(fract->mlx, IMGX, IMGY);
-	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
+	IMG = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
 	while (++x < IMGX + X)
 	{
 		while (++y < IMGY + Y)
 		{
-			fract->mdb->zr = x / ZX + X1;
-			fract->mdb->zi = y / ZY + Y1;
+			ZR = x / ZX + X1;
+			ZI = y / ZY + Y1;
 			fract->mdb->i = 0;
 			julia_next(fract);
 			if (fract->mdb->i != fract->mdb->it_max)

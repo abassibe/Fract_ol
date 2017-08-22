@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/22 01:19:48 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/22 03:06:55 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 
 static void		usage(void)
 {
-	write (1, "Usage : fractol [number]\n", 25);
-	write (1, "- 1 for Mandelbrot\n", 19);
-	write (1, "- 2 for Julia\n", 14);
-	write (1, "- 3 for Buddhabrot\n", 19);
-	write (1, "- 4 for Multi_brot^3\n", 21);
-	write (1, "- 5 for Multi_brot^5\n", 21);
+	write(1, "Usage : fractol [number]\n", 25);
+	write(1, "- 1 for Mandelbrot\n", 19);
+	write(1, "- 2 for Julia\n", 14);
+	write(1, "- 3 for Buddhabrot\n", 19);
+	write(1, "- 4 for Multi_brot^3\n", 21);
+	write(1, "- 5 for Multi_brot^5\n", 21);
 }
 
-static t_fract	*init_struct(void)
+static void		assign2(t_fract *fract, char c)
 {
-	t_fract		*new;
-	t_mdb		*mdbnew;
-
-	if (!(new = (t_fract *)malloc(sizeof(t_fract))) ||
-			!(mdbnew = (t_mdb *)malloc(sizeof(t_mdb))))
+	if (c == 52)
 	{
-		write(2, "Error malloc\n", 13);
-		exit (0);
+		fract->opt = '4';
+		fract->title = ft_strdup("MultiBrot ^3");
+		fract->fractal = multi_brot_3;
+		set_buddha(fract->mdb);
 	}
-	new->mdb = mdbnew;
-	set_struct(new);
-	new->img = NULL;
-	new->mlx = mlx_init();
-	return (new);
+	else if (c == 53)
+	{
+		fract->opt = '5';
+		fract->title = ft_strdup("MultiBrot ^5");
+		fract->fractal = multi_brot_5;
+		set_buddha(fract->mdb);
+	}
 }
 
-void		assign(t_fract *fract, char c)
+void			assign(t_fract *fract, char c)
 {
 	if (c == 49)
 	{
@@ -63,20 +63,7 @@ void		assign(t_fract *fract, char c)
 		fract->fractal = buddha;
 		set_buddha(fract->mdb);
 	}
-	else if (c == 52)
-	{
-		fract->opt = '4';
-		fract->title = ft_strdup("MultiBrot ^3");
-		fract->fractal = multi_brot_3;
-		set_buddha(fract->mdb);
-	}
-	else if (c == 53)
-	{
-		fract->opt = '5';
-		fract->title = ft_strdup("MultiBrot ^5");
-		fract->fractal = multi_brot_5;
-		set_buddha(fract->mdb);
-	}
+	assign2(fract, c);
 }
 
 static int		mouseover(int x, int y, t_fract *fract)

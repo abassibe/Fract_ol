@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/19 03:22:07 by abassibe         ###   ########.fr       */
+/*   CReated: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
+/*   Updated: 2017/08/22 03:37:24 by snedir           ###   ########.fr       */
 /*   Updated: 2017/08/16 05:10:28 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,26 +15,14 @@
 
 static void		mandel_next(t_fract *fract)
 {
-	long double		zr;
-	long double		zi;
-	long double		cr;
-	long double		ci;
-	long double		tmp;
-
-	zr = fract->mdb->zr;
-	zi = fract->mdb->zi;
-	cr = fract->mdb->cr;
-	ci = fract->mdb->ci;
-	tmp = fract->mdb->tmp;
-	while (zr * zr + zi * zi < 60 && fract->mdb->i < fract->mdb->it_max)
+	fract->mdb->i = 0;
+	while (ZR * ZR + ZI * ZI < 60 && fract->mdb->i < fract->mdb->it_max)
 	{
-		tmp = zr;
-		zr = zr * zr - zi * zi + cr;
-		zi = 2 * zi * tmp + ci;
+		fract->mdb->tmp = ZR;
+		ZR = ZR * ZR - ZI * ZI + CR;
+		ZI = 2 * ZI * fract->mdb->tmp + CI;
 		fract->mdb->i++;
 	}
-	fract->mdb->zr = zr;
-	fract->mdb->zi = zi;
 }
 
 void			mandel(t_fract *fract)
@@ -47,16 +35,15 @@ void			mandel(t_fract *fract)
 	if (fract->img != NULL)
 		mlx_destroy_image(fract->mlx, fract->vimg);
 	fract->vimg = mlx_new_image(fract->mlx, IMGX, IMGY);
-	fract->img = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
+	IMG = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
 	while (++x < IMGX + X)
 	{
 		while (++y < IMGY + Y)
 		{
-			fract->mdb->cr = x / ZX + X1;
-			fract->mdb->ci = y / ZY + Y1;
-			fract->mdb->zr = 0;
-			fract->mdb->zi = 0;
-			fract->mdb->i = 0;
+			CR = x / ZX + X1;
+			CI = y / ZY + Y1;
+			ZR = 0;
+			ZI = 0;
 			mandel_next(fract);
 			if (fract->mdb->i < fract->mdb->it_max)
 				get_color(fract, x - X, y - Y);

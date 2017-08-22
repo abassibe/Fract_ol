@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snedir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/01 02:36:51 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/22 02:08:40 by snedir           ###   ########.fr       */
-/*   Updated: 2017/08/16 05:26:27 by snedir           ###   ########.fr       */
+/*   Created: 2017/08/22 02:49:00 by snedir            #+#    #+#             */
+/*   Updated: 2017/08/22 03:01:05 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +17,9 @@ static void		psyche_color(t_fract *fract, int x, int y)
 	int			i;
 
 	i = (x * 4) + (y * fract->sl);
-	IMG[i] = (int)(fract->mdb->i * (ZX - ZY) / 2) * (fract->mdb->it_max - fract->mdb->i);
-	IMG[i + 1] = (int)(fract->mdb->i * (ZX -ZY) / 4) * (fract->mdb->it_max - fract->mdb->i);
-	IMG[i + 2] = (int)(fract->mdb->i * (ZX - ZY) / 6) * (fract->mdb->it_max - fract->mdb->i);
+	IMG[i] = (int)(I * (ZX - ZY) / 2) * (IT_MAX - I);
+	IMG[i + 1] = (int)(I * (ZX - ZY) / 4) * (IT_MAX - I);
+	IMG[i + 2] = (int)(I * (ZX - ZY) / 6) * (IT_MAX - I);
 	IMG[i + 3] = 0;
 }
 
@@ -30,12 +29,11 @@ static void		smooth_color(t_fract *fract, int x, int y)
 	double		it;
 	double		log_zn;
 	double		mu;
-	
-	log_zn = log(fract->mdb->zr * fract->mdb->zr + fract->mdb->zi * fract->mdb->zi) / 2;
-	mu = log(log_zn / log(2)) / log(2);
-	it = fract->mdb->i + 1 - mu;
-	it = it / fract->mdb->it_max;
 
+	log_zn = log(ZR * ZR + ZI * ZI) / 2;
+	mu = log(log_zn / log(2)) / log(2);
+	it = I + 1 - mu;
+	it = it / IT_MAX;
 	i = (x * 4) + (y * fract->sl);
 	IMG[i] = (int)(9 * (1 - it) * it * it * it * 255);
 	IMG[i + 1] = (int)(15 * (1 - it) * (1 - it) * it * it * 255);
@@ -48,20 +46,21 @@ static void		regular_color(t_fract *fract, int x, int y)
 	int			i;
 
 	i = (x * 4) + (y * fract->sl);
-	IMG[i] = fract->mdb->i * 3;
-	IMG[i + 1] = fract->mdb->i * 4;
-	IMG[i + 2] = fract->mdb->i * 5;
+	IMG[i] = I * 3;
+	IMG[i + 1] = I * 4;
+	IMG[i + 2] = I * 5;
 	IMG[i + 3] = 0;
 }
 
-void			rotate_matrice(t_fract *fract , int *x, int *y)
+void			rotate_matrice(t_fract *fract, int *x, int *y)
 {
-	int		tmp;
+	int			tmp;
 
 	tmp = *y;
 	*y = *x;
 	*x = fract->image_y - tmp;
 }
+
 void			buddha_color(t_fract *fract, int x, int y)
 {
 	int			i;
@@ -71,9 +70,9 @@ void			buddha_color(t_fract *fract, int x, int y)
 	tmp = 127 - ((127 - IMG[i + 3]) + 5);
 	if (tmp < -128)
 		tmp = -128;
-	IMG[i] = fract->mdb->i * 3;
-	IMG[i + 1] = fract->mdb->i * 4;
-	IMG[i + 2] = fract->mdb->i * 5;
+	IMG[i] = I * 3;
+	IMG[i + 1] = I * 4;
+	IMG[i + 2] = I * 5;
 	IMG[i + 3] = 0;
 }
 
@@ -81,7 +80,6 @@ void			get_color(t_fract *fract, int x, int y)
 {
 	if (fract->opt == 51)
 	{
-		/*rotate_matrice(fract, &x, &y);*/
 		if (x < 0 || x > 600 || y < 0 || y > 400)
 			return ;
 		buddha_color(fract, x, y);
@@ -90,7 +88,7 @@ void			get_color(t_fract *fract, int x, int y)
 		return ;
 	else if (fract->color == 3)
 		psyche_color(fract, x, y);
-	else if (fract->color == 2 && (fract->opt >= 49 || fract->opt <= 53))
+	else if (fract->color == 2 && (OPT == 49 || OPT == 52 || OPT == 53))
 		smooth_color(fract, x, y);
 	else
 		regular_color(fract, x, y);

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/22 01:19:42 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/22 03:21:09 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@
 # define IMGY fract->image_y
 # define ZX (IMGX / (X2 - X1))
 # define ZY (IMGY / (Y2 - Y1))
+# define ZR fract->mdb->zr
+# define ZI fract->mdb->zi
+# define CR fract->mdb->cr
+# define CI fract->mdb->ci
+# define I fract->mdb->i
+# define IT_MAX fract->mdb->it_max
+# define OPT fract->opt
+# define MOUSE_X fract->mouse_x
+
 
 typedef struct		s_fract
 {
@@ -75,6 +84,7 @@ typedef struct		s_mdb
 	int				it_max;
 }					t_mdb;
 
+t_fract				*init_struct(void);
 int					key_input(int keycode, t_fract *fract);
 void				mandel(t_fract *fract);
 void				multi_brot_3(t_fract *fract);

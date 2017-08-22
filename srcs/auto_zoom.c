@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 05:21:02 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/09 03:29:11 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/22 02:11:21 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 int		auto_zoom(t_fract *fract)
 {
-	double	mouseRe;
-	double	mouseIm;
+	double	mouse_re;
+	double	mouse_im;
 	double	interpolation;
 
 	interpolation = 0;
 	if (fract->auto_zoom == 1)
 	{
-		mouseRe = fract->mouse_x / (IMGX / (X2 - X1)) + X1;
-		mouseIm = fract->mouse_y / (IMGY / (Y2 - Y1)) + Y1;
+		mouse_re = fract->mouse_x / (IMGX / (X2 - X1)) + X1;
+		mouse_im = fract->mouse_y / (IMGY / (Y2 - Y1)) + Y1;
 		interpolation = 1.0 / 1.02;
 		fract->zoom++;
-		X1 = mouseRe + ((X1 - mouseRe) * interpolation);
-		Y1 = mouseIm + ((Y1 - mouseIm) * interpolation);
-		X2 = mouseRe + ((X2 - mouseRe) * interpolation);
-		Y2 = mouseIm + ((Y2 - mouseIm) * interpolation);
+		X1 = mouse_re + ((X1 - mouse_re) * interpolation);
+		Y1 = mouse_im + ((Y1 - mouse_im) * interpolation);
+		X2 = mouse_re + ((X2 - mouse_re) * interpolation);
+		Y2 = mouse_im + ((Y2 - mouse_im) * interpolation);
 	}
 	fract->fractal(fract);
 	return (0);
