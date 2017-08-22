@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/01 02:36:51 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/19 05:31:52 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/22 01:14:35 by abassibe         ###   ########.fr       */
 /*   Updated: 2017/08/16 05:26:27 by snedir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -81,7 +81,7 @@ void			get_color(t_fract *fract, int x, int y)
 {
 	if (fract->opt == 51)
 	{
-//		rotate_matrice(fract, &x, &y);
+		rotate_matrice(fract, &x, &y);
 		if (x < 0 || x > 600 || y < 0 || y > 400)
 			return ;
 		buddha_color(fract, x, y);
