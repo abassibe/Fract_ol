@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:53 by abassibe          #+#    #+#              #
-#    Updated: 2017/05/05 06:06:31 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/23 04:33:47 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,10 +99,12 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME):
-	@gcc $(FLAGS) -c $(SRCS)
+$(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
+
+%.o: ./%.c
+	@gcc $(FLAGS) -c $< -I libft.h
 
 clean:
 	@rm -rf $(OBJS)

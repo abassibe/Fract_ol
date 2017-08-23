@@ -6,13 +6,13 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/04 03:09:41 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/22 04:55:01 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/23 05:22:26 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void			apply_zoom(t_fract *fract, int check)
+void	apply_zoom(t_fract *fract, int check)
 {
 	double	mouse_re;
 	double	mouse_im;
@@ -34,4 +34,15 @@ void			apply_zoom(t_fract *fract, int check)
 	Y1 = mouse_im + ((Y1 - mouse_im) * interpolation);
 	X2 = mouse_re + ((X2 - mouse_re) * interpolation);
 	Y2 = mouse_im + ((Y2 - mouse_im) * interpolation);
+}
+
+void	no_color(t_fract *fract, int x, int y)
+{
+	int		i;
+
+	i = (x * 4) + (y * fract->sl);
+	IMG[i] = 0;
+	IMG[i + 1] = 0;
+	IMG[i + 2] = 0;
+	IMG[i + 3] = 0;
 }

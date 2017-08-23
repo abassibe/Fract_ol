@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/08/19 04:29:57 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/23 04:10:27 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,13 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME):
-	@gcc $(FLAGS) -c $(addprefix $(SRCPATH), $(SRCS)) \
-		-I includes/
+$(NAME): $(OBJS)
 	@make -C libft
 	@gcc $(FLAGS) $(OBJS) libft/libft.a ressources/libmlx.a -o $(NAME) \
 		-L. -framework OpenGL -framework AppKit
+
+%.o: $(SRCPATH)%.c
+	@gcc $(FLAGS) -c $< -I includes/
 
 .PHONY: all clean fclean re
 

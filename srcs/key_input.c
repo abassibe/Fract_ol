@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:23:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/22 04:54:50 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/23 05:06:28 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void		key_input4(int keycode, t_fract *fract)
 
 static void		key_input3(int keycode, t_fract *fract)
 {
-	if (keycode == 121)
+	if (keycode == 121 && fract->mdb->it_max > 10)
 		fract->mdb->it_max -= 10;
-	if (keycode == 116)
+	if (keycode == 116 && fract->mdb->it_max < 500)
 		fract->mdb->it_max += 10;
 	key_input4(keycode, fract);
 }

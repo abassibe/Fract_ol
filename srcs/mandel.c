@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:31:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/22 04:53:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/23 04:51:42 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ void			mandel(t_fract *fract)
 
 	x = X - 1;
 	y = Y - 1;
-	if (fract->img != NULL)
-		mlx_destroy_image(fract->mlx, fract->vimg);
-	fract->vimg = mlx_new_image(fract->mlx, IMGX, IMGY);
-	IMG = mlx_get_data_addr(fract->vimg, &fract->bpp, &fract->sl, &fract->end);
 	while (++x < IMGX + X)
 	{
 		while (++y < IMGY + Y)
@@ -46,6 +42,8 @@ void			mandel(t_fract *fract)
 			mandel_next(fract);
 			if (fract->mdb->i < fract->mdb->it_max)
 				get_color(fract, x - X, y - Y);
+			else
+				no_color(fract, x - X, y - Y);
 		}
 		y = Y;
 	}
