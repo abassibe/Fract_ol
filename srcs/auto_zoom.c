@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 05:21:02 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/23 05:25:22 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/23 05:37:42 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		auto_zoom(t_fract *fract)
 		Y1 = mouse_im + ((Y1 - mouse_im) * interpolation);
 		X2 = mouse_re + ((X2 - mouse_re) * interpolation);
 		Y2 = mouse_im + ((Y2 - mouse_im) * interpolation);
+		if (fract->zoom % 5 == 0)
+			fract->mdb->it_max += 1;
 	}
 	fract->fractal(fract);
 	return (0);
