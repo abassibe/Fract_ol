@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/08/23 04:10:27 by abassibe         ###   ########.fr        #
+#    Updated: 2017/08/28 01:11:36 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS =	fractol.c \
 		infos.c \
 		set_struct.c \
 		buddhabrot.c \
-		multi_brot.c
+		multi_brot.c \
+		burningship.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 02:56:07 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/23 04:42:45 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/28 00:35:15 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void				multi_brot_3(t_fract *fract);
 void				multi_brot_5(t_fract *fract);
 void				julia(t_fract *fract);
 void				buddha(t_fract *fract);
+void				bship(t_fract *fract);
 int					auto_zoom(t_fract *fract);
 int					mouse_input(int button, int x, int y, t_fract *fract);
 void				get_color(t_fract *fract, int x, int y);

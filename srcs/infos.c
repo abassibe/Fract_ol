@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/04 05:23:57 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/22 05:01:43 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/28 01:02:16 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,24 @@ static void		put_infos2(t_fract *fract)
 {
 	MSP(fract->mlx, WNFO, 157, 18, 0xff0000, "----USAGE----");
 	MSP(fract->mlx, WNFO, 25, 40, 0xffffff, "Directional arrows : move");
-	MSP(fract->mlx, WNFO, 195, 59, 0xffffff, "+ : zoom");
-	MSP(fract->mlx, WNFO, 195, 78, 0xffffff, "- : dezoom");
-	MSP(fract->mlx, WNFO, 165, 97, 0xffffff, "PgUP : increase iterations");
-	MSP(fract->mlx, WNFO, 165, 116, 0xffffff, "PgDn : decrease iterations");
-	MSP(fract->mlx, WNFO, 175, 135, 0xffffff, "Del : reset");
-	MSP(fract->mlx, WNFO, 165, 154, 0xffffff, "Home : auto-zoom");
-	MSP(fract->mlx, WNFO, 195, 173, 0xffffff, "P : enable/disable mouse");
-	MSP(fract->mlx, WNFO, 85, 192, 0xffffff,
+	MSP(fract->mlx, WNFO, 195, 58, 0xffffff, "+ : zoom");
+	MSP(fract->mlx, WNFO, 195, 76, 0xffffff, "- : dezoom");
+	MSP(fract->mlx, WNFO, 165, 94, 0xffffff, "PgUP : increase iterations");
+	MSP(fract->mlx, WNFO, 165, 112, 0xffffff, "PgDn : decrease iterations");
+	MSP(fract->mlx, WNFO, 175, 130, 0xffffff, "Del : reset");
+	MSP(fract->mlx, WNFO, 165, 148, 0xffffff, "Home : auto-zoom");
+	MSP(fract->mlx, WNFO, 195, 166, 0xffffff, "P : enable/disable mouse");
+	MSP(fract->mlx, WNFO, 85, 184, 0xffffff,
 			"mouse scroll : zoom in / zoom out");
-	MSP(fract->mlx, WNFO, 195, 211, 0xffffff, "1 : regular color");
-	MSP(fract->mlx, WNFO, 195, 230, 0xffffff, "2 : smooth color");
-	MSP(fract->mlx, WNFO, 195, 249, 0xffffff, "3 : psychedelic color");
-	MSP(fract->mlx, WNFO, 125, 268, 0xffffff, "PavNum 1 : Mandelbrot");
-	MSP(fract->mlx, WNFO, 125, 287, 0xffffff, "Pavnum 2 : Julia");
-	MSP(fract->mlx, WNFO, 125, 306, 0xffffff, "Pavnum 3 : Buddhabrot");
-	MSP(fract->mlx, WNFO, 125, 325, 0xffffff, "Pavnum 4 : Multibrot ^3");
-	MSP(fract->mlx, WNFO, 125, 344, 0xffffff, "Pavnum 5 : Multibrot ^5");
+	MSP(fract->mlx, WNFO, 195, 202, 0xffffff, "1 : regular color");
+	MSP(fract->mlx, WNFO, 195, 220, 0xffffff, "2 : smooth color");
+	MSP(fract->mlx, WNFO, 195, 238, 0xffffff, "3 : psychedelic color");
+	MSP(fract->mlx, WNFO, 125, 256, 0xffffff, "PavNum 1 : Mandelbrot");
+	MSP(fract->mlx, WNFO, 125, 274, 0xffffff, "Pavnum 2 : Julia");
+	MSP(fract->mlx, WNFO, 125, 292, 0xffffff, "Pavnum 3 : Buddhabrot");
+	MSP(fract->mlx, WNFO, 125, 310, 0xffffff, "Pavnum 4 : Multibrot ^3");
+	MSP(fract->mlx, WNFO, 125, 328, 0xffffff, "Pavnum 5 : Multibrot ^5");
+	MSP(fract->mlx, WNFO, 125, 346, 0xffffff, "Pavnum 6 : Burningship");
 }
 
 void			put_infos(t_fract *fract)

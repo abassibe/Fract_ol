@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 02:49:00 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/23 04:59:47 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/28 00:55:05 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void			get_color(t_fract *fract, int x, int y)
 		return ;
 	else if (fract->color == 3)
 		psyche_color(fract, x, y);
-	else if (fract->color == 2 && (OPT == 49 || OPT == 52 || OPT == 53))
+	else if (fract->color == 2 && (OPT == 49 || OPT == 52 ||
+				OPT == 53 || OPT == 54))
 		smooth_color(fract, x, y);
 	else
 		regular_color(fract, x, y);

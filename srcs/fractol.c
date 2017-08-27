@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 00:49:56 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/23 04:37:21 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/28 01:11:19 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void		usage(void)
 	write(1, "- 3 for Buddhabrot\n", 19);
 	write(1, "- 4 for Multi_brot^3\n", 21);
 	write(1, "- 5 for Multi_brot^5\n", 21);
+	write(1, "- 6 for Burningship\n", 20);
 }
 
 static void		assign2(t_fract *fract, char c)
@@ -37,6 +38,14 @@ static void		assign2(t_fract *fract, char c)
 		fract->title = ft_strdup("MultiBrot ^5");
 		fract->fractal = multi_brot_5;
 		set_mandelbrot(fract->mdb);
+	}
+	else if (c == 54)
+	{
+		fract->opt = '6';
+		fract->title = ft_strdup("Burningship");
+		fract->fractal = bship;
+		set_mandelbrot(fract->mdb);
+		fract->mdb->it_max = 120;
 	}
 }
 
@@ -80,7 +89,7 @@ int				main(int ac, char **av)
 {
 	t_fract		*fract;
 
-	if ((ac != 2) || !(av[1][0] >= 49 && av[1][0] <= 53))
+	if ((ac != 2) || !(av[1][0] >= 49 && av[1][0] <= 54))
 	{
 		usage();
 		return (0);

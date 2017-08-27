@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 01:23:18 by abassibe          #+#    #+#             */
-/*   Updated: 2017/08/23 05:06:28 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/08/28 00:48:59 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ static void		key_input5(int keycode, t_fract *fract)
 	{
 		set_struct(fract);
 		assign(fract, 53);
+	}
+	if (keycode == 88)
+	{
+		set_struct(fract);
+		assign(fract, 54);
 	}
 }
 
